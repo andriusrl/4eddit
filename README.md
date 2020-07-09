@@ -1,43 +1,55 @@
-![4eddit](https://i.imgur.com/lYaRcNR.png)
+![4eddit](https://i.imgur.com/UBBagOd.png)
 
 > Status do Projeto: Em desenvolvimento :warning:
 
 ### Link de acesso
-### http://falemais-andrius.surge.sh/
+### 4eddit-andrius.surge.sh
 
 # 4eddit
 
-#### A empresa de telefonia Telzir, especializada em chamadas de longa distância nacional, vai colocar um novo produto no mercado chamado FaleMais.
-#### Normalmente um cliente Telzir pode fazer uma chamada de uma cidade para outra pagando uma tarifa fixa por minuto, com o preço sendo pré-definido em uma lista com os códigos DDDs de origem e destino:
+#### Implementação do front-end de uma rede real com cadastro, login, posts, likes e comentários.
+<h6></h6>
 
-Origem | Destino | $/min
------- | ------- | ------
-011    | 016     | 1.90
-016    | 011     | 2.90
-011    | 017     | 1.70
-017    | 011     | 2.70
-011    | 018     | 0.90
-018    | 011     | 1.90
+### Página de login
 
-#### Com o novo produto FaleMais da Telzir o cliente adquire um plano e pode falar de graça até um determinado tempo (em minutos) e só paga os minutos excedentes. Os minutos excedentes tem um acréscimo de 10% sobre a tarifa normal do minuto. Os planos são FaleMais 30 (30 minutos), FaleMais 60 (60 minutos) e FaleMais 120 (120 minutos).
-#### A Telzir, preocupada com a transparência junto aos seus clientes, quer disponibilizar uma página na web onde o cliente pode calcular o valor da ligação. Ali, o cliente pode escolher os códigos das cidades de origem e destino, o tempo da ligação em minutos e escolher qual o plano FaleMais. O sistema deve mostrar dois valores: (1) o valor da ligação com o plano e (2) sem o plano. O custo inicial de aquisição do plano deve ser desconsiderado para este problema.
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c10d6996-4e20-45e8-a4aa-c1d7e4710fea/Untitled.png](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc10d6996-4e20-45e8-a4aa-c1d7e4710fea%2FUntitled.png?table=block&id=9df64902-45f4-4dfb-a48d-3cba6807226c&width=1060&cache=v2)
 
-### Ex:
-Origem | Destino | Tempo | Plano FaleMais | Com FaleMais | Sem FaleMais
------- | ------- | ----- | -------------- | ------------ | ------------ 
-011    | 016     | 20    | FaleMais 30    | $ 0,00       | $ 38,00
-011    | 017     | 80    | FaleMais 60    | $ 37,40      | $ 136,00
-018    | 011     | 200   | FaleMais 120   | $ 167,20     | $ 380,00
-018    | 017     | 100   | FaleMais 30    | -            | -
+A página de login possui dois campos de texto: email e senha. O comportamento será o mesmo da página de login feita semana passada. Ao fazer o login, o usuário deverá ser redirecionado para a página de feed.
+
+A página possui também um botão "Cadastrar", que leva o usuário para a página de cadastro.
+
+### Página de cadastro
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/74892eaa-2276-42fc-8a0d-7ad3295f413c/Untitled.png](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F74892eaa-2276-42fc-8a0d-7ad3295f413c%2FUntitled.png?table=block&id=d86ff58a-1b45-4689-b41d-0addade2ea32&width=1060&cache=v2)
+
+A página de cadastro possui 3 campos: nome de usuário, email e senha. O endpoint de cadastro retornará as mesmas informações do endpoint de login. Portanto, após cadastrar, o usuário deverá ser redirecionado para a página de feed, já estando logado (ou seja, com o token salvo no LocalStorage).
+
+### Página de feed (lista de posts)
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ae9a5889-1b48-4fc2-a9ca-bd32b632eab8/Untitled.png](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fae9a5889-1b48-4fc2-a9ca-bd32b632eab8%2FUntitled.png?table=block&id=d08c5c7e-e815-4fa0-a543-b9084c7e12b6&width=1060&cache=v2)
+
+A página de feed deverá mostrar todos os posts, além de um formulário para a criação de post. O formulário possui apenas o campo de texto. Cada post mostrará o nome de usuário que postou, o texto do post, o número de votos (positivo ou negativo) e o número de comentários. Caso o usuário tenha votado positiva ou negativamente, isso deverá estar indicado. Todas essa informações serão fornecidas pela API.
+
+Quando o usuário clicar em um post, ele deverá ser redirecionado para a página do respectivo post. 
+
+Quando um usuário clicar em votar (positiva ou negativamente), uma requisição deverá ser feita indicando a "direção" do voto. Um voto positivo é indicado com o número `1`. Um voto negativo é indicado com o número `-1`. Para remover um voto, a direção deve ser `0`.
+
+Essa página só pode ser acessada por um usuário logado. Caso o usuário não esteja logado, deverá ser redirecionado para a página de login.
+
+### Página de post
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/38b78c1b-6bb4-4fb7-844b-991ed9f199da/Untitled.png](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F38b78c1b-6bb4-4fb7-844b-991ed9f199da%2FUntitled.png?table=block&id=a53989da-b39d-4d7d-b433-db99e4b390ee&width=1060&cache=v2)
+
+A página de um post mostrará o mesmo card de post da página de feed, com o usuário, texto, curtidas e número de comentários. Abaixo, terá um formulário para criação de comentários e os cards de comentários. A estrutura é muito similar à do post, mas comentários não possuem outros comentários dentro deles. A lógica de votos é a mesma do post.
+
+Essa página só pode ser acessada por um usuário logado. Caso o usuário não esteja logado, deverá ser redirecionado para a página de login.
 
 # Linguagens de programação e bibliotecas utilizadas
 
 ### - JavaScript
 ### - ReactJS
-### - React-Router
+### - React-Routes
 ### - MaterialUI
-### - Jest
-### - Enzyme
 
 # Como iniciar o projeto
 
@@ -54,11 +66,6 @@ Abra [http://localhost:3000](http://localhost:3000) para visualizá-lo no navega
 
 A página será recarregada se você fizer edições. <br />
 Você também verá erros no console.
-
-### `npm test`
-
-Inicia o corredor de teste no modo de observação interativo.<br />
-Os testes foram realizados com jest e enzyme.
 
 ### `npm run build`
 
