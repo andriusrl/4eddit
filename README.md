@@ -1,6 +1,6 @@
 ![4eddit](https://i.imgur.com/UBBagOd.png)
 
-> Status do Projeto: Em desenvolvimento :warning:
+> Status do Projeto: Concluído
 
 ### Link de acesso
 ### 4eddit-andrius.surge.sh
@@ -48,6 +48,7 @@ Essa página só pode ser acessada por um usuário logado. Caso o usuário não 
 
 ### - JavaScript
 ### - ReactJS
+### - Redux
 ### - React-Routes
 ### - MaterialUI
 
